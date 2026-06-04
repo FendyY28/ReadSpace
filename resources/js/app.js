@@ -1,0 +1,29 @@
+import './bootstrap';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Alpine from 'alpinejs';
+import './functions1';
+
+
+window.Alpine = Alpine;
+
+Alpine.start();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordInput = document.getElementById('password');
+    const toggleButton = document.getElementById('togglePassword');
+    const eyeOpen = document.getElementById('eyeOpen');
+    const eyeClosed = document.getElementById('eyeClosed');
+
+    if (!passwordInput || !toggleButton) return;
+
+    toggleButton.addEventListener('click', () => {
+        const isPassword = passwordInput.type === 'password';
+
+        passwordInput.type = isPassword ? 'text' : 'password';
+
+        if (eyeOpen && eyeClosed) {
+            eyeOpen.classList.toggle('hidden', !isPassword);
+            eyeClosed.classList.toggle('hidden', isPassword);
+        }
+    });
+});
